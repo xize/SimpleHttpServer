@@ -7,6 +7,7 @@ import tv.mineinthebox.simpleserver.MimeType;
 import tv.mineinthebox.simpleserver.events.SimpleServerEvent;
 import tv.mineinthebox.simpleserver.events.manager.ServerEvent;
 import tv.mineinthebox.simpleserver.events.manager.ServerListener;
+import tv.mineinthebox.simpleserver.example.Main;
 
 public class AboutListener implements ServerListener {
 	
@@ -25,7 +26,7 @@ public class AboutListener implements ServerListener {
 					add("<h1>Simple-Server about me page</h1>");
 					add("<hr>");
 					add("<p><a href=\"/index.html\"/>index</a> || <a href=\"/about.html\"/>about</a> || <a href=\"/contact.html\"/>contact</a></p>");
-					add("<img src=\"/image.jpg\" height=\"48\" width=\"48\"/>");
+					add("<img src=\"/image.jpg\" height=\"48\" width=\"64\"/>");
 					add("<p></p>");
 					add("<p>Hi there, Im xize the actor of this library this is the about page.</p>");
 					add("</body>");
@@ -35,7 +36,6 @@ public class AboutListener implements ServerListener {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@ServerEvent
 	public void onImage(SimpleServerEvent e) {
 		if(e.isCancelled()) {
@@ -45,7 +45,7 @@ public class AboutListener implements ServerListener {
 		if(e.isGetRequest()) {
 			if(e.getUri().equalsIgnoreCase("/image.jpg")) {
 					e.setMimeType(MimeType.MIME_JPEG);
-					File f = new File("C:/Xeph0re3D.jpg");
+					File f = new File(Main.getResource("Xeph0re3D.jpg"));
 					if(f.exists()) {
 						e.setContent(f);
 					} else {
