@@ -1,9 +1,9 @@
 package tv.mineinthebox.simpleserver.events;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -122,35 +122,21 @@ public class SimpleServerEvent implements SimpleEvent {
 	 * sent a file back to the client, as long the mime type is set correctly
 	 * 
 	 * @param f the file being converted as content
-	 * @deprecated
-	 * <p>
-	 * (this method is not ready yet, begin of file starts with a enter in the stream which isn't supposed to happen causing to corrupt the output)
 	 * @see SimpleServerEvent#setContent(byte[])
 	 */
 	@Override
 	public void setContent(File f) {
-		//TODO: trying to figure out what causes the enter on the first line, making the file corrupt.
-
-		//byte[] file_length = new byte[(int)f.length()];
 		try {
-			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(f));
+			InputStream is = new FileInputStream(f);
 			ByteArrayOutputStream ous = new ByteArrayOutputStream();
-
-			int read = -1;
-
-			int index = 0;
-
-			while((read = bis.read()) != -1) {
-				if(index != 0) {
+			int read = 0;
+			
+			while((read = is.read()) != -1) {
 					ous.write(read);
-					ous.flush();	
-				}
-				index++;
+					ous.flush();
 			}
-			byte[] bytes = ous.toByteArray();
-			System.out.println(Arrays.toString(bytes));
-			this.contents = bytes;
-			bis.close();
+			is.close();
+			this.contents = ous.toByteArray();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
