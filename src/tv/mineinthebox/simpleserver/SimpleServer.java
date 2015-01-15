@@ -8,7 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 import tv.mineinthebox.simpleserver.events.SimpleServerEvent;
 import tv.mineinthebox.simpleserver.events.manager.ServerEvent;
@@ -20,6 +23,8 @@ public class SimpleServer implements Runnable, Server {
 	private final String servername;
 	private volatile ServerSocket server;
 	private volatile Thread thread;
+	
+	private volatile Set<Tag> tags = new HashSet<Tag>();
 	
 	private volatile SortedList<ServerListener> listeners = new SortedList<ServerListener>(new Comparator<ServerListener>() {
 
@@ -106,6 +111,33 @@ public class SimpleServer implements Runnable, Server {
 	 */
 	public void removeListener(ServerListener listener) {
 		listeners.remove(listener);
+	}
+	
+	/**
+	 * adds a template tag to the server instance
+	 * 
+	 * @param tag the tag representing a dynamic or abstract replacement of a piece of content
+	 */
+	public void addTemplateTag(Tag tag) {
+		tags.add(tag);
+	}
+	
+	/**
+	 * removes a template tag from the server instance
+	 * 
+	 * @param tag the tag representing a dynamic or abstract replacement of a piece of content
+	 */
+	public void removeTemplateTag(Tag tag) {
+		tags.remove(tag);
+	}
+	
+	/**
+	 * returns a list of template tags for this instance
+	 * 
+	 * @return Set<Tag>
+	 */
+	public Set<Tag> getTemplateTags() {
+		return Collections.unmodifiableSet(tags);
 	}
 
 	private SimpleServerEvent callEvent(SimpleServerEvent event) {

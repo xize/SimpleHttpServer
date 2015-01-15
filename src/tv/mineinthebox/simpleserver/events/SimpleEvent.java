@@ -7,6 +7,7 @@ import tv.mineinthebox.simpleserver.Content;
 import tv.mineinthebox.simpleserver.HttpClient;
 import tv.mineinthebox.simpleserver.MimeType;
 import tv.mineinthebox.simpleserver.Server;
+import tv.mineinthebox.simpleserver.Tag;
 
 public interface SimpleEvent {
 	
@@ -45,5 +46,11 @@ public interface SimpleEvent {
 	public Map<String, String> getFormData();
 	
 	public HttpClient getClientHeaderData();
+	
+	public boolean hasTags();
+	
+	public Tag[] getAvailableTags();
+	
+	public boolean isMimeText();
 	
 }
