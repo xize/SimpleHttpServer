@@ -199,7 +199,7 @@ public class SimpleServer implements Runnable, Server {
 						response.write("HTTP/1.1 200 OK\r\n".getBytes());
 						response.write(("Content-Type: " + event.getMimeType().getMimeType() + "\r\n").getBytes());
 						response.write(("Content-Length: " + event.getContents().length + "\n\r").getBytes());
-						response.write("\n\r".getBytes());
+						response.write("\n".getBytes());	
 						response.flush();
 						response.write(event.getContents());
 						response.flush();
