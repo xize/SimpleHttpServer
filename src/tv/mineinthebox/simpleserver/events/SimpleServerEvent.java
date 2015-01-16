@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,7 @@ public class SimpleServerEvent implements SimpleEvent {
 	private boolean cancel = false;
 	private MimeType mime = MimeType.MIME_HTML;
 	private byte[] contents;
+	private final InetAddress ip;
 	private final List<MimeType> textmime =  new ArrayList<MimeType>() {
 		private static final long serialVersionUID = 1L; {
 			add(MimeType.MIME_CSS);
@@ -45,11 +47,13 @@ public class SimpleServerEvent implements SimpleEvent {
 		 * @param client the http client
 		 * @param server the server where this event belongs to
 		 * @param mime   the default mime-type
+		 * @param adress the ip adress from the client
 		 */
-		public SimpleServerEvent(HttpClient client, Server server, MimeType mime) {
+		public SimpleServerEvent(HttpClient client, Server server, MimeType mime, InetAddress address) {
 			this.client = client;
 			this.server = server;
 			this.mime = mime;
+			this.ip = address;
 		}
 
 		/**
@@ -302,6 +306,15 @@ public class SimpleServerEvent implements SimpleEvent {
 		@Override
 		public boolean isMimeText() {
 			return textmime.contains(getMimeType());
+		}
+		
+		/**
+		 * returns the InetAddress of the client triggering this event
+		 * 
+		 * @return InetAddress
+		 */
+		public InetAddress getInetAddress() {
+			return ip;
 		}
 
 }

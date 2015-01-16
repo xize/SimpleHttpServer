@@ -209,17 +209,17 @@ public class SimpleServer implements Runnable, Server {
 					SimpleServerEvent event = null;
 
 					if(client.getUrl().isEmpty() || client.getUrl().equalsIgnoreCase("/")) {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_HTML);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_HTML, socket.getInetAddress());
 					} else if(client.getUrl().endsWith(".html") || client.getUrl().endsWith(".htm") || client.getUrl().endsWith(".php")) {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_HTML);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_HTML, socket.getInetAddress());
 					} else if(client.getUrl().endsWith(".jpg") || client.getUrl().endsWith(".gif") || client.getUrl().endsWith(".png")) {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_JPEG);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_JPEG, socket.getInetAddress());
 					} else if(client.getUrl().endsWith(".json")) {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_JSON);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_JSON, socket.getInetAddress());
 					} else if(client.getUrl().endsWith(".xml")) {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_XML);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_XML, socket.getInetAddress());
 					} else {
-						event = new SimpleServerEvent(client, this, MimeType.MIME_PLAIN);
+						event = new SimpleServerEvent(client, this, MimeType.MIME_PLAIN, socket.getInetAddress());
 					}
 					
 					callEvent(event);

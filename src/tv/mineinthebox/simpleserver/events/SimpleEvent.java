@@ -1,6 +1,7 @@
 package tv.mineinthebox.simpleserver.events;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.util.Map;
 
 import tv.mineinthebox.simpleserver.Content;
@@ -52,5 +53,7 @@ public interface SimpleEvent {
 	public Tag[] getAvailableTags();
 	
 	public boolean isMimeText();
+	
+	public InetAddress getInetAddress();
 	
 }
