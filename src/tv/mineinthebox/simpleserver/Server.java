@@ -18,5 +18,12 @@ public interface Server {
 	 * @return boolean
 	 */
 	public boolean isRunning();
+	
+	/**
+	 * returns the port of the server
+	 * 
+	 * @return int
+	 */
+	public int getPort();
 
 }

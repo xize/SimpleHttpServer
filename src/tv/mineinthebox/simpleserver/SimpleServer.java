@@ -70,7 +70,6 @@ public class SimpleServer implements Runnable, Server {
 			this.server = new ServerSocket(port);
 			this.thread = new Thread(this);
 			thread.start();
-			System.out.println("[SimpleServer]: http server " + servername + " has been started on port " + port);
 		}
 	}
 
@@ -86,7 +85,8 @@ public class SimpleServer implements Runnable, Server {
 			this.server = null;
 			this.thread.stop();
 			this.thread = null;
-			System.out.println("[SimpleServer]: http server " + servername + " has been stopped on port " + port);
+			tags.clear();
+			listeners.clear();
 		}
 	}
 
@@ -258,8 +258,23 @@ public class SimpleServer implements Runnable, Server {
 		return true;
 	}
 
+	/**
+	 * returns the name of the server
+	 * 
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return this.servername;
+	}
+
+	/**
+	 * returns the port
+	 * 
+	 * @return int
+	 */
+	@Override
+	public int getPort() {
+		return port;
 	}
 }
