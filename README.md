@@ -2,7 +2,7 @@
 
 this is my first web server library written in java be aware that the library still lacks some features.
 
-javadocs can be found at: http://ci.mineinthebox.tv:8080/job/SimpleServer/
+javadocs can be found at: https://0c3.eu/job/SimpleServer/
 
 #current features:
 - post support
