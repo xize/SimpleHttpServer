@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * a List which work with a anonymous Comperator<E> inside the constructor
- *
- * @param <E> - the element type of the list
+ * a List which work with a anonymous Comperator<E>() inside the constructor
  */
 public class SortedList<E> extends AbstractList<E> {
 	

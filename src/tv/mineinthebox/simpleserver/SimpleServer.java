@@ -134,7 +134,7 @@ public class SimpleServer implements Runnable, Server {
 	/**
 	 * returns a list of template tags for this instance
 	 * 
-	 * @return Set<Tag>
+	 * @return Set<Tag>()
 	 */
 	public Set<Tag> getTemplateTags() {
 		return Collections.unmodifiableSet(tags);

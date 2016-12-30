@@ -96,7 +96,7 @@ public class HttpClient {
 	/**
 	 * returns the wrapped version of parameters whereas the keys are the input field names and the values are the values of the fields
 	 * 
-	 * @return Map<String, String>
+	 * @return Map<String, String>()
 	 * @see HttpClient#hasFormParameters()
 	 */
 	public Map<String, String> getFormParameters() {

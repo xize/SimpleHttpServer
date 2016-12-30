@@ -41,13 +41,13 @@ public class SimpleServerEvent implements SimpleEvent {
 		}};
 
 		/**
-		 * this is the constructor for the SimpleServerEvent</p>
+		 * <p>this is the constructor for the SimpleServerEvent</p>
 		 * 
 		 * note its not recommend to instance it yourself
 		 * @param client the http client
 		 * @param server the server where this event belongs to
 		 * @param mime   the default mime-type
-		 * @param adress the ip adress from the client
+		 * @param address the ip address from the client
 		 */
 		public SimpleServerEvent(HttpClient client, Server server, MimeType mime, InetAddress address) {
 			this.client = client;
@@ -121,7 +121,6 @@ public class SimpleServerEvent implements SimpleEvent {
 		 * 
 		 * @param content the content to inject on the already existing content
 		 * @deprecated (this method could malfunction due the fact it injects new content to the already existing content, its more encouraged to have for each page one listener which listens to the url rather than injecting contents)
-		 * <p>
 		 * @see SimpleServerEvent#setContent(byte[])
 		 * @see SimpleServerEvent#setContent(Content)
 		 */
@@ -242,7 +241,7 @@ public class SimpleServerEvent implements SimpleEvent {
 		/**
 		 * returns a map giving the keys as the form names and values as input of the keys, this works for both post and get requests
 		 *
-		 * @return Map<String, String>
+		 * @return Map<String, String>()
 		 */
 		@Override
 		public Map<String, String> getFormData() {
